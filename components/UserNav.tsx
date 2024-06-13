@@ -4,9 +4,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
+import Link from "next/link";
 
 export default async function UserNav() {
   const { getUser } = getKindeServerSession();
@@ -32,6 +34,29 @@ export default async function UserNav() {
         {user ? (
           <>
             <DropdownMenuItem>{user.given_name}</DropdownMenuItem>
+            <DropdownMenuItem>
+              <form className="w-full">
+                <button type="submit" className="w-full text-start">
+                  List Your Home
+                </button>
+              </form>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-homes" className="w-full">
+                My Listings
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-favourites" className="w-full">
+                My Favourites
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/my-reservations" className="w-full">
+                My Reservation
+              </Link>
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogoutButton />
             </DropdownMenuItem>
