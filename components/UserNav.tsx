@@ -9,11 +9,16 @@ import {
 } from "./ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
 import Link from "next/link";
+import { createHome } from "@/app/actions";
 
 export default async function UserNav() {
   const { getUser } = getKindeServerSession();
 
   const user = await getUser();
+
+  const createHomeWithId = createHome.bind(null, {
+    userId: user?.id as string,
+  });
 
   return (
     <DropdownMenu>
@@ -35,7 +40,7 @@ export default async function UserNav() {
           <>
             <DropdownMenuItem>{user.given_name}</DropdownMenuItem>
             <DropdownMenuItem>
-              <form className="w-full">
+              <form action={createHomeWithId} className="w-full">
                 <button type="submit" className="w-full text-start">
                   List Your Home
                 </button>
