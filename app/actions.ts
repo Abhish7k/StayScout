@@ -27,5 +27,24 @@ export async function createHome({ userId }: { userId: string }) {
     !data.addedLocation
   ) {
     return redirect(`/create/${data.id}/structure`);
+  } else if (!data.addedCategory && !data.addedDescription) {
+    return redirect(`/create/${data.id}/description`);
   }
+}
+
+export async function createCategoryPage(formData: FormData) {
+  const categoryName = formData.get("categoyName") as string;
+  const homeId = formData.get("homeId") as string;
+
+  const data = await prisma.home.update({
+    where: {
+      id: homeId,
+    },
+    data: {
+      categoryName: categoryName,
+      addedCategory: true,
+    },
+  });
+
+  return redirect(`/create/${homeId}/description`);
 }
