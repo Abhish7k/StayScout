@@ -16,7 +16,7 @@ export default function Map({ locationValue }: { locationValue: string }) {
   const latLang = getCountryByValue(locationValue)?.latLang;
   return (
     <MapContainer
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       className="h-[50vh] rounded-lg relative z-0 w-[60%] mx-auto"
       center={latLang ?? [52.505, -0.09]}
       zoom={8}
