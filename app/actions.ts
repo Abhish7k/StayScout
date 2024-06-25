@@ -1,6 +1,7 @@
 "use server";
 
 import prisma from "@/lib/db";
+import { supabase } from "@/lib/supabase";
 import { redirect } from "next/navigation";
 
 export async function createHome({ userId }: { userId: string }) {
@@ -82,5 +83,5 @@ export async function createDescription(formData: FormData) {
     },
   });
 
-  return;
+  return redirect(`/create/${homeId}/address`);
 }
