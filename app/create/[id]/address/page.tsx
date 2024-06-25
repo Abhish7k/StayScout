@@ -11,12 +11,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useCountries } from "@/lib/countries";
+import dynamic from "next/dynamic";
 import { useState } from "react";
 
 export default function AddressPage({ params }: { params: { id: string } }) {
   const { getAllCountries } = useCountries();
   const [locationValue, setLocationValue] = useState("");
+
+  const LazyMap = dynamic(() => import("@/components/Map"), {
+    ssr: false,
+    loading: () => <Skeleton className="h-[50vh] w-[60%] mx-auto" />,
+  });
 
   return (
     <>
@@ -48,6 +55,8 @@ export default function AddressPage({ params }: { params: { id: string } }) {
             </Select>
           </div>
         </div>
+
+        <LazyMap locationValue={locationValue} />
 
         <CreationBottomBar />
       </form>
