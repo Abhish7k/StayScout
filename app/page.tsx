@@ -1,12 +1,14 @@
 import ListingCard from "@/components/ListingCard";
 import MapFilterItems from "@/components/MapFilterItems";
+import { SkeltonCard } from "@/components/SkeltonCard";
 import prisma from "@/lib/db";
+import { Suspense } from "react";
 
 async function getData({
   searchParams,
 }: {
   searchParams?: {
-    filter: string;
+    filter?: string;
   };
 }) {
   const data = await prisma.home.findMany({
@@ -29,7 +31,25 @@ async function getData({
   return data;
 }
 
-export default async function Home({
+export default function Home({
+  searchParams,
+}: {
+  searchParams?: {
+    filter?: string;
+  };
+}) {
+  return (
+    <main className="container mx-auto px-5 lg:px-10 mb-20">
+      <MapFilterItems />
+
+      <Suspense key={searchParams?.filter} fallback={<SkeletonLoading />}>
+        <ShowItems searchParams={searchParams} />
+      </Suspense>
+    </main>
+  );
+}
+
+async function ShowItems({
   searchParams,
 }: {
   searchParams?: {
@@ -39,8 +59,7 @@ export default async function Home({
   const data = await getData({ searchParams: searchParams });
 
   return (
-    <main className="container mx-auto px-5 lg:px-10 mb-20">
-      <MapFilterItems />
+    <div>
       <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
         {data.map((item, idx) => (
           <ListingCard
@@ -53,6 +72,17 @@ export default async function Home({
           />
         ))}
       </div>
-    </main>
+    </div>
+  );
+}
+
+function SkeletonLoading() {
+  return (
+    <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+      <SkeltonCard />
+      <SkeltonCard />
+      <SkeltonCard />
+      <SkeltonCard />
+    </div>
   );
 }
