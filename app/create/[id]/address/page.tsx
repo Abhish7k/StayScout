@@ -2,6 +2,7 @@
 
 import { createLocation } from "@/app/actions";
 import CreationBottomBar from "@/components/CreationBottomBar";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -53,6 +54,12 @@ export default function AddressPage({ params }: { params: { id: string } }) {
                 </SelectGroup>
               </SelectContent>
             </Select>
+          </div>
+        </div>
+
+        <div className="w-3/5 mx-auto mb-10">
+          <div className="mb-5">
+            <Input placeholder="Enter City" name="city" />
           </div>
         </div>
 

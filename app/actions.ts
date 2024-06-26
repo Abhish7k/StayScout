@@ -52,7 +52,7 @@ export async function createHome({ userId }: { userId: string }) {
 }
 
 export async function createCategoryPage(formData: FormData) {
-  const categoryName = formData.get("categoyName") as string;
+  const categoryName = formData.get("categoryName") as string;
   const homeId = formData.get("homeId") as string;
 
   const data = await prisma.home.update({
@@ -107,6 +107,7 @@ export async function createDescription(formData: FormData) {
 export async function createLocation(formData: FormData) {
   const homeId = formData.get("homeId") as string;
   const countryValue = formData.get("countryValue") as string;
+  const city = formData.get("city") as string;
 
   const data = await prisma.home.update({
     where: {
@@ -115,6 +116,7 @@ export async function createLocation(formData: FormData) {
     data: {
       addedLocation: true,
       country: countryValue,
+      city: city,
     },
   });
 
