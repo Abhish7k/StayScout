@@ -8,11 +8,11 @@ interface iAppProps {
   location: string;
   city: string;
   price: number;
-  userId: string | undefined;
-  isInFavoriteList: boolean;
-  favoriteId: string;
-  homeId: string;
-  pathName: string;
+  // userId: string | undefined;
+  // isInFavoriteList: boolean;
+  // favoriteId: string;
+  // homeId: string;
+  // pathName: string;
 }
 
 export default function ListingCard({

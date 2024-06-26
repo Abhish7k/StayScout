@@ -1,5 +1,6 @@
 import ListingCard from "@/components/ListingCard";
 import MapFilterItems from "@/components/MapFilterItems";
+import { NoItems } from "@/components/NoItems";
 import { SkeltonCard } from "@/components/SkeltonCard";
 import prisma from "@/lib/db";
 import { Suspense } from "react";
@@ -59,20 +60,27 @@ async function ShowItems({
   const data = await getData({ searchParams: searchParams });
 
   return (
-    <div>
-      <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
-        {data.map((item, idx) => (
-          <ListingCard
-            key={idx}
-            description={item.description as string}
-            imagePath={item.photo as string}
-            price={item.price as number}
-            location={item.country as string}
-            city={item.city as string}
-          />
-        ))}
-      </div>
-    </div>
+    <>
+      {data.length === 0 ? (
+        <NoItems
+          description="Please check a other category or create your own listing!"
+          title="Sorry no listings found for this category..."
+        />
+      ) : (
+        <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+          {data.map((item, idx) => (
+            <ListingCard
+              key={idx}
+              description={item.description as string}
+              imagePath={item.photo as string}
+              price={item.price as number}
+              location={item.country as string}
+              city={item.city as string}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
