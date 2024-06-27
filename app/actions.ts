@@ -122,3 +122,15 @@ export async function createLocation(formData: FormData) {
 
   return redirect("/");
 }
+
+export async function addToFavourite(formData: FormData) {
+  const homeId = formData.get("homeId") as string;
+  const userId = formData.get("userId") as string;
+
+  const data = await prisma.favourite.create({
+    data: {
+      id: homeId,
+      userId: userId,
+    },
+  });
+}

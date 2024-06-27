@@ -1,6 +1,9 @@
 import { useCountries } from "@/lib/countries";
+import { Heart } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { AddToFavouriteButton } from "./SubmitButton";
+import { addToFavourite } from "@/app/actions";
 
 interface iAppProps {
   imagePath: string;
@@ -8,10 +11,10 @@ interface iAppProps {
   location: string;
   city: string;
   price: number;
-  // userId: string | undefined;
-  // isInFavoriteList: boolean;
-  // favoriteId: string;
-  // homeId: string;
+  userId: string | undefined;
+  isInFavoriteList: boolean;
+  favoriteId: string;
+  homeId: string;
   // pathName: string;
 }
 
@@ -21,6 +24,10 @@ export default function ListingCard({
   location,
   city,
   price,
+  userId,
+  isInFavoriteList,
+  favoriteId,
+  homeId,
 }: iAppProps) {
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(location);
@@ -36,6 +43,22 @@ export default function ListingCard({
             className="rounded-lg object-cover mb-2"
           />
         </Link>
+
+        {userId && (
+          <div className="z-10 absolute top-2 right-2 rounded-full hover:scale-110">
+            {isInFavoriteList ? (
+              <form>
+                <AddToFavouriteButton />
+              </form>
+            ) : (
+              <form action={addToFavourite}>
+                <input type="hidden" name="userId" value={userId} />
+                <input type="hidden" name="homeId" value={homeId} />
+                <AddToFavouriteButton />
+              </form>
+            )}
+          </div>
+        )}
       </div>
 
       <Link href={"/"}>
