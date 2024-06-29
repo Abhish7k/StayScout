@@ -2,6 +2,7 @@
 
 import prisma from "@/lib/db";
 import { supabase } from "@/lib/supabase";
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 export async function createHome({ userId }: { userId: string }) {
@@ -126,11 +127,29 @@ export async function createLocation(formData: FormData) {
 export async function addToFavourite(formData: FormData) {
   const homeId = formData.get("homeId") as string;
   const userId = formData.get("userId") as string;
+  const pathName = formData.get("pathName") as string;
 
   const data = await prisma.favourite.create({
     data: {
-      id: homeId,
+      homeId: homeId,
       userId: userId,
     },
   });
+
+  revalidatePath(pathName);
+}
+
+export async function deleteFromFavorite(formData: FormData) {
+  const favoriteId = formData.get("favoriteId") as string;
+  const pathName = formData.get("pathName") as string;
+  const userId = formData.get("userId") as string;
+
+  const data = await prisma.favourite.delete({
+    where: {
+      id: favoriteId,
+      userId: userId,
+    },
+  });
+
+  revalidatePath(pathName);
 }

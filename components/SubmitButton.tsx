@@ -37,7 +37,28 @@ export function AddToFavouriteButton() {
           className="bg-[#DCE6F1] p-1.5 rounded-full hover:bg-white transition-all"
           type="submit"
         >
-          <Heart className="w-4 h-4 " />
+          <Heart className="w-4 h-4" />
+        </button>
+      )}
+    </>
+  );
+}
+
+export function DeleteFromFavouriteButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <>
+      {pending ? (
+        <button className="bg-[#DCE6F1 p-1.5 rounded-full hover:bg-white transition-all">
+          <Loader2 className="h-4 w-4 animate-spin text-primary" />
+        </button>
+      ) : (
+        <button
+          className="bg-[#DCE6F1] p-1.5 rounded-full hover:bg-white transition-all"
+          type="submit"
+        >
+          <Heart className="w-4 h-4 text-primary" fill="#E21C49" />
         </button>
       )}
     </>
