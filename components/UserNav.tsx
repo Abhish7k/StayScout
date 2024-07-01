@@ -22,7 +22,7 @@ export default async function UserNav() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="focus:outline-none">
+      <DropdownMenuTrigger className="rounded-full hover:shadow-md focus:outline-none transition-all ease-in-out duration-300">
         <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
           <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
           <img

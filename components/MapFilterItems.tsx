@@ -24,7 +24,7 @@ export default function MapFilterItems() {
   );
 
   return (
-    <div className="flex gap-x-10 my-5 w-full overflow-x-scroll no-scrollbar">
+    <div className="flex gap-x-10 my-5 mb-2 w-full overflow-x-scroll no-scrollbar">
       {categoryItems.map((item, idx) => (
         <Link
           key={idx}
@@ -33,7 +33,7 @@ export default function MapFilterItems() {
             search === item.name
               ? "border-b-2 border-black pb-2 flex-shrink-0"
               : "opacity-70 flex-shrink-0",
-            "flex flex-col gap-y-3 items-center"
+            "flex flex-col gap-y-3 items-center hover:opacity-100 transition-all"
           )}
         >
           <div className="relative w-6 h-6">
