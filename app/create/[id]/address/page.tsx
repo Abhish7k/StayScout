@@ -37,7 +37,7 @@ export default function AddressPage({ params }: { params: { id: string } }) {
       <form action={createLocation}>
         <input type="hidden" name="homeId" value={params.id} />
         <input type="hidden" name="countryValue" value={locationValue} />
-        <div className="w-3/5 mx-auto mb-10">
+        <div className="w-3/5 mx-auto mb-5">
           <div className="mb-5">
             <Select required onValueChange={(value) => setLocationValue(value)}>
               <SelectTrigger className="w-full">
@@ -57,7 +57,7 @@ export default function AddressPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <div className="w-3/5 mx-auto mb-10">
+        <div className="w-3/5 mx-auto mb-5">
           <div className="mb-5">
             <Input placeholder="Enter City" name="city" />
           </div>

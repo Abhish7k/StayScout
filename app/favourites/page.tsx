@@ -24,8 +24,6 @@ async function getData(userId: string) {
     },
   });
 
-  console.log(data);
-
   return data;
 }
 
@@ -37,15 +35,13 @@ export default async function FavoriteRoute() {
 
   const data = await getData(user.id);
 
-  console.log(user.id);
-
   return (
     <section className="container mx-atuo px-5 lg:px-10 mt-10">
       <h2 className="text-3xl font-semibold tracking-tight">Your Favorites</h2>
 
       {data.length === 0 ? (
         <NoItems
-          title="Hey you dont have any favorites"
+          title="You don't have any Favorites"
           description="Please add favorites to see them right here..."
         />
       ) : (
