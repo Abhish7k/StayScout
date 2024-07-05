@@ -1,6 +1,6 @@
 import { SkeltonCard } from "@/components/SkeltonCard";
 
-export default function Favoritesloading() {
+export default function FavoritesLoading() {
   return (
     <section className="container mx-atuo px-5 lg:px-10 mt-10">
       <h2 className="text-3xl font-semibold tracking-tight">Your Favorites</h2>

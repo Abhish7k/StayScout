@@ -38,7 +38,7 @@ export default function ListingCard({
   return (
     <div className="flex flex-col">
       <div className="relative h-72">
-        <Link href={"/"}>
+        <Link href={`/home/${homeId}`}>
           <Image
             src={`https://wzkljcmrurwndgrcbxuz.supabase.co/storage/v1/object/public/images/${imagePath}`}
             alt="house image"
@@ -70,7 +70,7 @@ export default function ListingCard({
         )}
       </div>
 
-      <Link href={"/"}>
+      <Link href={`/home/${homeId}`}>
         <h3 className="font-medium text-base mt-4">
           <span className="capitalize">{city},</span> {country?.label}
         </h3>
