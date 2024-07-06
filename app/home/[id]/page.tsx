@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useCountries } from "@/lib/countries";
 import { Dot } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { CaegoryShowcase } from "@/components/CaegoryShowcase";
+import { HomeMap } from "@/components/HomeMap";
 
 async function getData(homeId: string) {
   const data = await prisma.home.findUnique({
@@ -48,7 +50,7 @@ export default async function HomeRoute({
   const country = getCountryByValue(data?.country as string);
 
   return (
-    <div className="w-[75%] mx-auto my-10">
+    <div className="mx-[15%] my-10">
       <h1 className="font-medium text-3xl mt-5 mb-5">{data?.title}</h1>
       <div className="relative h-[600px]">
         <Image
@@ -92,7 +94,25 @@ export default async function HomeRoute({
               </div>
             </div>
 
-            <Separator />
+            <Separator className="mb-5" />
+
+            <CaegoryShowcase categoryName={data?.categoryName as string} />
+
+            <Separator className="my-5" />
+
+            <p className="text-muted-foreground">{data?.description}</p>
+
+            <Separator className="my-10" />
+
+            <div className="flex flex-col w-full">
+              <div className="mb-5">
+                <h1 className="text-xl font-medium">Where you&apos;ll be</h1>
+                <h4 className="capitalize mt-2">
+                  {data?.city}, {country?.label}
+                </h4>
+              </div>
+              <HomeMap locationValue={country?.value as string} />
+            </div>
           </div>
         </div>
       </div>

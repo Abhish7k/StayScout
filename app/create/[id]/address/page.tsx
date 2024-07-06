@@ -63,7 +63,9 @@ export default function AddressPage({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <LazyMap locationValue={locationValue} />
+        <div className="w-3/5 mx-auto">
+          <LazyMap locationValue={locationValue} />
+        </div>
 
         <CreationBottomBar />
       </form>
