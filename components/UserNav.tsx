@@ -22,7 +22,7 @@ export default async function UserNav() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="rounded-full hover:shadow-md focus:outline-none transition-all ease-in-out duration-300">
+      <DropdownMenuTrigger className="rounded-full hover:shadow-md transition-all">
         <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
           <MenuIcon className="w-6 h-6 lg:w-5 lg:h-5" />
           <img
@@ -39,6 +39,9 @@ export default async function UserNav() {
         {user ? (
           <>
             <DropdownMenuItem>{user.given_name}</DropdownMenuItem>
+
+            <DropdownMenuSeparator />
+
             <DropdownMenuItem>
               <form action={createHomeWithId} className="w-full">
                 <button type="submit" className="w-full text-start">
@@ -46,22 +49,27 @@ export default async function UserNav() {
                 </button>
               </form>
             </DropdownMenuItem>
+
             <DropdownMenuItem>
               <Link href="/myhomes" className="w-full">
                 My Listings
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem>
               <Link href="/favourites" className="w-full">
                 My Favourites
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuItem>
               <Link href="/my-reservations" className="w-full">
                 My Reservation
               </Link>
             </DropdownMenuItem>
+
             <DropdownMenuSeparator />
+
             <DropdownMenuItem>
               <LogoutButton />
             </DropdownMenuItem>
@@ -71,6 +79,7 @@ export default async function UserNav() {
             <DropdownMenuItem>
               <RegisterButton />
             </DropdownMenuItem>
+
             <DropdownMenuItem>
               <LoginButton />
             </DropdownMenuItem>

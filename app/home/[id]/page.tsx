@@ -6,6 +6,12 @@ import { Dot } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { CaegoryShowcase } from "@/components/CaegoryShowcase";
 import { HomeMap } from "@/components/HomeMap";
+import SelectCalender from "@/components/SelectCalender";
+import { createReservation } from "@/app/actions";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ReservationSubmitButton } from "@/components/SubmitButton";
 
 async function getData(homeId: string) {
   const data = await prisma.home.findUnique({
@@ -31,6 +37,12 @@ async function getData(homeId: string) {
           profileImage: true,
         },
       },
+
+      Reservation: {
+        where: {
+          homeId: homeId,
+        },
+      },
     },
   });
 
@@ -46,12 +58,15 @@ export default async function HomeRoute({
 
   const data = await getData(homeId);
 
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+
   const { getCountryByValue } = useCountries();
   const country = getCountryByValue(data?.country as string);
 
   return (
     <div className="mx-[15%] my-10">
-      <h1 className="font-medium text-3xl mt-5 mb-5">{data?.title}</h1>
+      <h1 className="font-semibold text-3xl mt-5 mb-5">{data?.title}</h1>
       <div className="relative h-[600px]">
         <Image
           src={`https://wzkljcmrurwndgrcbxuz.supabase.co/storage/v1/object/public/images/${data?.photo}`}
@@ -63,7 +78,7 @@ export default async function HomeRoute({
 
       <div className="flex justify-between gap-x-24 mt-10">
         <div className="w-2/3">
-          <h3 className="text-xl font-medium capitalize">
+          <h3 className="text-2xl font-medium capitalize">
             {data?.city}, {country?.label}
           </h3>
 
@@ -115,6 +130,29 @@ export default async function HomeRoute({
             </div>
           </div>
         </div>
+
+        <form
+          action={createReservation}
+          className="flex flex-col items-start h-fit p-4 border rounded-xl shadow-md"
+        >
+          <h1 className="flex items-end mb-5 text-2xl font-semibold">
+            ${data?.price}{" "}
+            <p className="ml-1 mb-1 text-sm text-muted-foreground">night</p>
+          </h1>
+
+          <input type="hidden" name="homeId" value={homeId} />
+          <input type="hidden" name="userId" value={user?.id} />
+
+          <SelectCalender reservation={data?.Reservation} />
+
+          {user?.id ? (
+            <ReservationSubmitButton />
+          ) : (
+            <Button className="w-full" asChild>
+              <Link href="/api/auth/login">Make a Reservation</Link>
+            </Button>
+          )}
+        </form>
       </div>
     </div>
   );
