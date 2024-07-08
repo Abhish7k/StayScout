@@ -1,5 +1,6 @@
 import Link from "next/link";
 import UserNav from "./UserNav";
+import SearchComponent from "./SearchComponent";
 
 export default function Navbar() {
   return (
@@ -9,9 +10,7 @@ export default function Navbar() {
           <span>stayscout</span>
         </Link>
 
-        <div className="rounded-full border px-5 py-2">
-          <h1>Hello from search</h1>
-        </div>
+        <SearchComponent />
 
         <UserNav />
       </div>
