@@ -22,6 +22,7 @@ async function getData(userId: string) {
       country: true,
       city: true,
       photo: true,
+      title: true,
       description: true,
       price: true,
       Favourite: {
@@ -66,6 +67,7 @@ export default async function page() {
               imagePath={item.photo as string}
               homeId={item.id}
               price={item.price as number}
+              title={item.title as string}
               description={item.description as string}
               location={item.country as string}
               city={item.city as string}

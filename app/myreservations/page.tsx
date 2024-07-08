@@ -19,6 +19,7 @@ async function getData(userId: string) {
           country: true,
           city: true,
           photo: true,
+          title: true,
           description: true,
           price: true,
           Favourite: {
@@ -60,6 +61,7 @@ export default async function ReservationsPage() {
           {data.map((item, idx) => (
             <ListingCard
               key={idx}
+              title={item.Home?.title as string}
               description={item.Home?.description as string}
               location={item.Home?.country as string}
               city={item.Home?.city as string}
