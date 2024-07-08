@@ -21,6 +21,7 @@ async function getData(userId: string) {
           price: true,
           country: true,
           city: true,
+          title: true,
           description: true,
         },
       },
@@ -52,6 +53,7 @@ export default async function FavoriteRoute() {
           {data.map((item, idx) => (
             <ListingCard
               key={idx}
+              title={item.Home?.title as string}
               description={item.Home?.description as string}
               location={item.Home?.country as string}
               city={item.Home?.city as string}
