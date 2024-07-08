@@ -5,6 +5,8 @@ import { SkeltonCard } from "@/components/SkeltonCard";
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Suspense } from "react";
+import { unstable_noStore as noStore } from "next/cache";
+import { usePathname } from "next/navigation";
 
 async function getData({
   userId,
@@ -19,6 +21,8 @@ async function getData({
     bathroom?: string;
   };
 }) {
+  noStore();
+
   const data = await prisma.home.findMany({
     where: {
       addedCategory: true,
@@ -53,6 +57,10 @@ export default function Home({
 }: {
   searchParams?: {
     filter?: string;
+    country?: string;
+    guest?: string;
+    room?: string;
+    bathroom?: string;
   };
 }) {
   return (
