@@ -9,6 +9,7 @@ import { addToFavourite, deleteFromFavorite } from "@/app/actions";
 
 interface iAppProps {
   imagePath: string;
+  title: string;
   description: string;
   location: string;
   city: string;
@@ -21,6 +22,7 @@ interface iAppProps {
 }
 
 export default function ListingCard({
+  title,
   description,
   imagePath,
   location,
@@ -74,9 +76,7 @@ export default function ListingCard({
         <h3 className="font-medium text-base mt-4">
           <span className="capitalize">{city},</span> {country?.label}
         </h3>
-        <p className="text-muted-foreground text-sm line-clamp-2">
-          {description}
-        </p>
+        <p className="text-muted-foreground text-sm line-clamp-2">{title}</p>
         <p className="pt-2 text-muted-foreground">
           <span className="font-medium text-black">${price}</span> night
         </p>
