@@ -6,7 +6,6 @@ import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Suspense } from "react";
 import { unstable_noStore as noStore } from "next/cache";
-import { usePathname } from "next/navigation";
 
 async function getData({
   userId,
@@ -99,7 +98,7 @@ async function ShowItems({
           title="Sorry no listings found for this category..."
         />
       ) : (
-        <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
+        <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-10 transition-all">
           {data.map((item, idx) => (
             <ListingCard
               key={idx}
@@ -124,7 +123,7 @@ async function ShowItems({
 
 function SkeletonLoading() {
   return (
-    <div className="grid lg:grid-cols-4 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+    <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8 transition-all">
       <SkeltonCard />
       <SkeltonCard />
       <SkeltonCard />
