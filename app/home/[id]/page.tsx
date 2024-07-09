@@ -68,7 +68,7 @@ export default async function HomeRoute({
   const country = getCountryByValue(data?.country as string);
 
   return (
-    <div className="mx-[15%] my-10">
+    <div className="mx-10 md:mx-[5%] lg:mx-[10%] xl:mx-[15%] my-10 transition-all">
       <h1 className="font-semibold text-3xl mt-5 mb-5">{data?.title}</h1>
       <div className="relative h-[600px]">
         <Image
@@ -79,8 +79,8 @@ export default async function HomeRoute({
         />
       </div>
 
-      <div className="flex justify-between gap-x-24 mt-10">
-        <div className="w-2/3">
+      <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start gap-x-24 gap-y-10 mt-10">
+        <div className="w-full lg:w-2/3">
           <h3 className="text-2xl font-medium capitalize">
             {data?.city}, {country?.label}
           </h3>
@@ -122,7 +122,7 @@ export default async function HomeRoute({
 
             <Separator className="my-10" />
 
-            <div className="flex flex-col w-full">
+            <div className="flex flex-col w-full mb-10">
               <div className="mb-5">
                 <h1 className="text-xl font-medium">Where you&apos;ll be</h1>
                 <h4 className="capitalize mt-2">
@@ -136,7 +136,7 @@ export default async function HomeRoute({
 
         <form
           action={createReservation}
-          className="flex flex-col items-start h-fit p-4 border rounded-xl shadow-md"
+          className="flex flex-col items-center justify-center lg:items-start h-fit p-4 border rounded-xl shadow-md w-fit mx-auto transition-all"
         >
           <h1 className="flex items-end mb-5 text-2xl font-semibold">
             ${data?.price}{" "}
@@ -148,13 +148,15 @@ export default async function HomeRoute({
 
           <SelectCalender reservation={data?.Reservation} />
 
-          {user?.id ? (
-            <ReservationSubmitButton />
-          ) : (
-            <Button className="w-full" asChild>
-              <Link href="/api/auth/login">Make a Reservation</Link>
-            </Button>
-          )}
+          <div className="w-full mt-4">
+            {user?.id ? (
+              <ReservationSubmitButton />
+            ) : (
+              <Button className="w-full" asChild>
+                <Link href="/api/auth/login">Make a Reservation</Link>
+              </Button>
+            )}
+          </div>
         </form>
       </div>
     </div>

@@ -38,7 +38,7 @@ export default function ListingCard({
   const country = getCountryByValue(location);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col hover:opacity-95 transition-all">
       <div className="relative h-72">
         <Link href={`/home/${homeId}`}>
           <Image
