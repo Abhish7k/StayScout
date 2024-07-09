@@ -9,9 +9,16 @@ export default function Navbar() {
           <span>stayscout</span>
         </a>
 
-        <SearchComponent />
+        <div className="hidden md:block transition-all ease-in-out">
+          <SearchComponent />
+        </div>
 
-        <UserNav />
+        <div className="flex gap-4">
+          <div className="md:hidden">
+            <SearchComponent />
+          </div>
+          <UserNav />
+        </div>
       </div>
     </div>
   );

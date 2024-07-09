@@ -54,8 +54,8 @@ export default function SearchComponent() {
   return (
     <Dialog>
       <DialogTrigger asChild onClick={() => setStep(1)}>
-        <div className="rounded-full py-2 px-5 border flex items-center cursor-pointer hover:shadow-md transition-all">
-          <div className="flex h-full divide-x text-sm">
+        <div className="flex items-center py-2 px-2 md:px-5 rounded-full border cursor-pointer hover:shadow-md transition-all">
+          <div className="hidden md:flex h-full divide-x text-sm transition-all">
             <p className="px-4">Anywhere</p>
             <p className="px-4">Any week</p>
             <p className="px-4">Add guests</p>
@@ -65,7 +65,7 @@ export default function SearchComponent() {
         </div>
       </DialogTrigger>
 
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="max-w-[380px] md:max-w-[425px] transition-all">
         <form className="flex flex-col gap-4">
           {step === 1 ? (
             <>
