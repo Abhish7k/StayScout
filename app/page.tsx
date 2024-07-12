@@ -128,6 +128,10 @@ function SkeletonLoading() {
       <SkeltonCard />
       <SkeltonCard />
       <SkeltonCard />
+      <SkeltonCard />
+      <SkeltonCard />
+      <SkeltonCard />
+      <SkeltonCard />
     </div>
   );
 }
