@@ -21,7 +21,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-10 px-10 lg:px-52 py-20 flex justify-between border-t transition-all ease-in-out duration-300">
+    <footer className="w-full mt-60 px-10 lg:px-52 py-20 flex justify-between border-t transition-all ease-in-out duration-300">
       {/* left col */}
       <div className="">
         <h1 className="font-bold text-3xl md:text-4xl text-primary transition-all ease-in-out duration-300">
